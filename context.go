@@ -775,21 +775,6 @@ func (c *Context) GetRawData() ([]byte, error) {
 // SetCookie adds a Set-Cookie header to the ResponseWriter's headers.
 // The provided cookie must have a valid Name. Invalid cookies may be
 // silently dropped.
-func (c *Context) SetCookie(name, value string, maxAge int, path, domain string, sameSite http.SameSite, secure, httpOnly bool) {
-	if path == "" {
-		path = "/"
-	}
-	http.SetCookie(c.Writer, &http.Cookie{
-		Name:     name,
-		Value:    url.QueryEscape(value),
-		MaxAge:   maxAge,
-		Path:     path,
-		Domain:   domain,
-		SameSite: sameSite,
-		Secure:   secure,
-		HttpOnly: httpOnly,
-	})
-}
 
 // Cookie returns the named cookie provided in the request or
 // ErrNoCookie if not found. And return the named cookie is unescaped.
